@@ -1,62 +1,43 @@
 let match = 50;
 
+function askANumber(){
+    let questionPlayer = parseInt(prompt("Mode Multijoueurs: choisis le nombre de joueur"))
+    console.log(questionPlayer);
+    return questionPlayer; 
+}
 
-function Player1(){
+
+function Player1(x){
 
    while(match > 0){
-   let question = parseInt(prompt("Joueur 1: Choisis un nombre d'allumettes entre 1 et 6"));
+   for(i=1; i<=x; i++){
+
+   let question = parseInt(prompt("Joueur: " + i + " Choisis un nombre d'allumettes entre 1 et 6"));
    console.log(question);
    
     if(question < 1 || question > 6){
         alert("Erreur: Choisis un nombre entre 1 et 6");
-        Player1(); 
+        Player1(x); 
     }
     if(match < question){
         alert("Erreur: Choisis un nombre plus petit");
-        Player1();
-     }   
+        Player1(x);
+    }   
     else{
         match = match - question;
         console.log(match);
-        Player2();
      }
     if(match == 0){
-        alert("Bravo tu as gagné!"); 
-        //Réinitialise match à 50 avant de pouvoir rappeller la fonction askANumber() et relancer une partie//
+        alert("Joueur " + i + " Bravo tu as gagné!"); 
         match = 50,
-        Player1();
+        Player1(x);
      } 
    }
+  }
 }
 
-function Player2(){
 
-    while(match > 0){
-    let question = parseInt(prompt("Joueur 2: Choisis un nombre d'allumettes entre 1 et 6"));
-    console.log(question);
-    
-     if(question < 1 || question > 6){
-         alert("Erreur: Choisis un nombre entre 1 et 6");
-         Player2(); 
-     }
-     if(match < question){
-         alert("Erreur: Choisis un nombre plus petit");
-         Player2();
-      }   
-     else{
-         match = match - question;
-         console.log(match);
-         Player1();
-      }
-     if(match == 0){
-         alert("Bravo tu as gagné!"); 
-         //Réinitialise match à 50 avant de pouvoir rappeller la fonction askANumber() et relancer une partie//
-         match = 50,
-         Player2();
-      } 
-    }
- }
+let x = askANumber();
+Player1(x);
 
-Player1();
-Player2();
 
